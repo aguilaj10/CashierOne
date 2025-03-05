@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cashier#1</string>
+    <string name="hello">Hola</string>
+
+    <!--Login -->
+    <string name="login_title">Log in</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Log in</string>
+</resources>

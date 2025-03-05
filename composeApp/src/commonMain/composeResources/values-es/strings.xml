@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cashier#1</string>
+    <string name="hello">Hola</string>
+
+    <!--Login -->
+    <string name="login_title">Iniciar sesión</string>
+</resources>
