@@ -1,7 +1,6 @@
 package com.jsm.cashierone.ui.login
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,6 +35,7 @@ import com.jsm.cashierone.ui.components.Size
 import com.jsm.cashierone.ui.components.Style
 import com.jsm.cashierone.ui.components.Type
 import com.jsm.cashierone.ui.components.VSpacer
+import com.jsm.cashierone.ui.theme.LocalMainContainer
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.kodein.di.compose.rememberInstance
@@ -45,9 +45,10 @@ import org.kodein.di.compose.withDI
 fun LoginScreen(modifier: Modifier = Modifier) = withDI(loginModule) {
     val viewModel by rememberInstance<LoginViewModel>()
     val state = viewModel.uiState.collectAsState()
+    println("Name: ${LocalMainContainer.current.platform}")
 
     Column(
-        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {

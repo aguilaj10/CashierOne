@@ -43,8 +43,11 @@ class LoginViewModel(
         println("${uiState.value.getEmail()} -- ${uiState.value.getPassword()}")
         viewModelScope.launch {
             loginRepository.login(uiState.value.getEmail(), uiState.value.getPassword().sha2Hash())
-                .onSuccess {}
+                .onSuccess {
+                    println("Success: ${this.data.token}")
+                }
                 .onError {
+                    println("Error: ${this.message()}")
                     _uiState.update {
                         LoginState.Error(this.message(), uiState.value.getEmail(), "")
                     }

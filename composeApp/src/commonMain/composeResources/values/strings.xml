@@ -7,4 +7,9 @@
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_button">Log in</string>
+
+    <!-- Desktop menu -->
+    <string name="desktop_menu_sales">Sales</string>
+    <string name="desktop_menu_products">Products</string>
+    <string name="desktop_menu_configuration">Configuration</string>
 </resources>

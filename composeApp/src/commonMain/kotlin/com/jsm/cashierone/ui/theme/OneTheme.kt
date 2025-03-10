@@ -5,6 +5,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import com.jsm.cashierone.Platform
+import com.jsm.cashierone.PlatformNames
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -85,8 +90,6 @@ private val darkScheme = darkColorScheme(
 @Composable
 fun OneTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable() () -> Unit
 ) {
     val colors = if (!darkTheme) lightScheme else darkScheme
@@ -94,4 +97,28 @@ fun OneTheme(
         colorScheme = colors,
         content = content,
     )
+}
+
+val LocalMainContainer = compositionLocalOf { MainContainer(WindowSize.COMPACT, NoPlatform()) }
+
+data class MainContainer(val windowSize: WindowSize, val platform: Platform)
+internal class NoPlatform : Platform {
+    override val name: String = PlatformNames.NONE
+}
+
+enum class WindowSize {
+    COMPACT,
+    MEDIUM,
+    EXPANDED;
+
+    // Factory method that creates an instance of the class based on window width
+    companion object {
+        fun basedOnWidth(windowWidth: Dp): WindowSize {
+            return when {
+                windowWidth < 600.dp -> COMPACT
+                windowWidth < 840.dp -> MEDIUM
+                else -> EXPANDED
+            }
+        }
+    }
 }
